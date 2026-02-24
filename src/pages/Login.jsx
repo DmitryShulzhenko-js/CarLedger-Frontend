@@ -99,44 +99,59 @@
 ////// NEW
 
 
-import { useState } from 'react';
-import { login } from '../api/auth.js';
+import { useState } from "react";
+import { login } from "../api/auth.js";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../app/AuthContext";
 
 export default function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
   const navigate = useNavigate();
+  const { setUser } = useAuth(); // берём setUser из контекста
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
 
     try {
       const user = await login(username, password);
-      navigate("/dashboard");
-      console.log('Logged in user:', user);
-      console.log('Token in localStorage:', localStorage.getItem('token'));
+
+      setUser(user);
+
+      // редирект
+      navigate("/dashboard", { replace: true });
 
     } catch (err) {
-      console.error(err.message);
+      setError(err.message);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+    <div>
+      <h2>Login</h2>
 
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-      <button type="submit">Login</button>
-    </form>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit">Login</button>
+      </form>
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
+    </div>
   );
 }

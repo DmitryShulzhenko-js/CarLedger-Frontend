@@ -25,31 +25,7 @@ export const getProfile = async () => {
     }
   });
 
-  if (res.status == 401) {
-    localStorage.removeItem('token');
-    throw new Error('UNAUTHORIZED');
-  }
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch profile');
-  }
-
-  return await res.json();
-};
-
-export const logout = async () => {
-
-  console.log('НАЖАЛИ КНОПКУ')
-
-  const token = localStorage.getItem('token');
-
-  const res = await fetch('http://localhost:5000/profile', {
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  });
-
-  if (res.status == 401) {
+  if (res.status === 401) {// токен протух
     localStorage.removeItem('token');
     throw new Error('UNAUTHORIZED');
   }

@@ -1,5 +1,3 @@
-console.log("HOME PAGE RENDERED");
-
 import { useState } from "react";
 
 export default function HomePage() {

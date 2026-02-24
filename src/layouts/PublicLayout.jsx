@@ -1,6 +1,9 @@
 import { Outlet, Link } from "react-router-dom";
 
 export default function PublicLayout() {
+
+  console.log('зашло в PublicLayout()')
+
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       
@@ -17,6 +20,7 @@ export default function PublicLayout() {
           <Link to="/">Главная</Link>
           <Link to="/login">Войти</Link>
           <Link to="/register">Регистрация</Link>
+          <Link to="/settings">Настройки</Link>
         </nav>
       </header>
 

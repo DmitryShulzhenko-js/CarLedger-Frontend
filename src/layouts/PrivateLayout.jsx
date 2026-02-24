@@ -1,5 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
-import { useAuth } from "../app/useAuth.js";
+import { useAuth } from "../app/AuthContext";
 
 export default function PrivateLayout() {
 

@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+
+const AuthContext = createContext();
 
 const parseJwt = (token) => {
   try {
@@ -8,7 +10,7 @@ const parseJwt = (token) => {
   }
 };
 
-export function useAuth() {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -32,5 +34,13 @@ export function useAuth() {
     setUser(null);
   };
 
-  return { user, loading, logout };
+  return (
+    <AuthContext.Provider value={{ user, loading, logout, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
 }

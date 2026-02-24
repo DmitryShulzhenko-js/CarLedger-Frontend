@@ -9,6 +9,7 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/Login";
 import DashboardPage from "../pages/Dashboard";
 import ProfilePage from "../pages/Profile";
+import SettingsPage from "../pages/Settings";
 
 export default function AppRouter() {
   return (
@@ -19,6 +20,7 @@ export default function AppRouter() {
         <Route element={<PublicLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
         </Route>
 
         {/* Private zone */}
