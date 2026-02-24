@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./app/AuthProvider";
 import PrivateRoute from "./app/PrivateRoute";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard"; // просто компонент с текстом "Добро пожаловать"
+import Dashboard from "./pages/Dashboard";
 
 export default function App() {
   return (

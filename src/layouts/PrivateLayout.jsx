@@ -2,7 +2,12 @@ import { Outlet, Link } from "react-router-dom";
 import { useAuth } from "../app/useAuth.js";
 
 export default function PrivateLayout() {
+
   const { logout } = useAuth();
+
+  console.log('зашло в PrivateLayout()')
+
+  console.log('logout: ', logout)
 
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
@@ -14,7 +19,7 @@ export default function PrivateLayout() {
         color: "#fff",
         padding: "20px"
       }}>
-        <h3>CarKeeper</h3>
+        <h3>CarLedger</h3>
 
         <nav style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
           <Link to="/dashboard" style={{ color: "#fff" }}>Dashboard</Link>

@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/Login";
 import DashboardPage from "../pages/Dashboard";
+import ProfilePage from "../pages/Profile";
 
 export default function AppRouter() {
   return (
@@ -29,7 +30,9 @@ export default function AppRouter() {
           }
         >
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Route>
+        
 
       </Routes>
     </BrowserRouter>
